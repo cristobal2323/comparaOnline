@@ -1,0 +1,96 @@
+<h1>Selecciona tu seguro</h1>
+
+<form id="enviar" method="post">
+    <div class="form">
+      <div>
+        <label for="name">Name</label>
+        <select id="name" name="name">
+          <option value="">Seleccione</option>
+          <option value="Medium Coverage">Medium Coverage</option>
+          <option value="Full Coverage">Full Coverage</option>
+          <option value="Low Coverage">Low Coverage</option>
+          <option value="Mega Coverage">Mega Coverage</option>
+          <option value="Special Full Coverage">Special Full Coverage</option>
+          <option value="Super Sale">Super Sale</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="sellin">SellIn</label>
+        <input required="required" type="number" min="0" name="sellin" id="sellin" /> 
+      </div>
+
+      <div>
+        <label for="price">Price</label>
+        <input required="required" type="number" min="0" max="50" name="price" id="price" /> 
+      </div>
+
+      <div>
+        <input required="required" type="submit" name="enviar" id="enviar" /> 
+      </div>
+
+    </div>
+</form>
+
+<script type="text/javascript">
+  const formLogin = document.querySelector('#enviar')
+
+  let productList = document.createElement('div')
+  productList.className = "container"
+
+  let ok = true;
+
+  formLogin.addEventListener('submit', event => {
+    event.preventDefault()
+
+    if(!ok){
+      while (productList.firstChild) {
+        productList.removeChild(productList.firstChild);
+      }
+    }
+
+    ok = false;
+
+    fetch('/api/carInsurance', {
+      method: 'POST',
+      headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: document.querySelector('#name').value, 
+        sellIn: document.querySelector('#sellin').value, 
+        price: document.querySelector('#price').value
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+      data.products.map((item,i) => {
+        let title = document.createTextNode(`Day: ${i}`)
+        let text = document.createTextNode(`Name: ${item.name}`)
+        let text1 = document.createTextNode(`sellIn: ${item.sellIn}`)
+        let text2 = document.createTextNode(`Price: ${item.price}`) 
+
+        let elemTitle = document.createElement('h2')
+        let elem = document.createElement('h3')
+        let elem1 = document.createElement('h3')
+        let elem2 = document.createElement('h3')
+
+        let div = document.createElement('div')
+        productList.appendChild(div);
+
+        elemTitle.appendChild(title)
+        elem.appendChild(text)
+        elem1.appendChild(text1)
+        elem2.appendChild(text2)
+
+        div.appendChild(elemTitle)
+        div.appendChild(elem)
+        div.appendChild(elem1)
+        div.appendChild(elem2)
+
+      })
+      document.body.appendChild(productList)
+    })
+  })
+</script>
