@@ -1,10 +1,9 @@
 <h1>Selecciona tu seguro</h1>
-
 <form id="enviar" method="post">
     <div class="form">
       <div>
         <label for="name">Name</label>
-        <select id="name" name="name">
+        <select required="required" id="name" name="name">
           <option value="">Seleccione</option>
           <option value="Medium Coverage">Medium Coverage</option>
           <option value="Full Coverage">Full Coverage</option>
@@ -26,12 +25,12 @@
       </div>
 
       <div>
-        <input required="required" type="submit" name="enviar" id="enviar" /> 
+        <input type="submit" name="enviar" id="enviar" /> 
       </div>
 
     </div>
 </form>
-
+<p><strong>Información: </strong> Este test simulara el comportamiento por 30 días de nuestro producto, solo debes completar los campos y darle click a enviar</p>
 <script type="text/javascript">
   const formLogin = document.querySelector('#enviar')
 
