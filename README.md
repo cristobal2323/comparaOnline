@@ -1,5 +1,8 @@
 # node-api-rest-2017
-API REST con Node.js utilizada en el curso gratis de Youtube.
+Compara Online Test.
 
-➡️ **[Curso de Node.js y MongoDB - Crea un API REST desde cero](https://www.youtube.com/playlist?list=PLUdlARNXMVkk7E88zOrphPyGdS50Tadlr
+run : npm install
+run : node app
+
+➡️ **[Link Test](https://www.youtube.com/playlist?list=PLUdlARNXMVkk7E88zOrphPyGdS50Tadlr
 )** 
