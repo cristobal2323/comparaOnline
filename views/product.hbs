@@ -50,6 +50,7 @@
     }
 
     ok = false;
+    const prec = (document.querySelector('#name').value != "Mega Coverage")?document.querySelector('#price').value:80;
 
     fetch('/api/carInsurance', {
       method: 'POST',
@@ -60,7 +61,7 @@
       body: JSON.stringify({
         name: document.querySelector('#name').value, 
         sellIn: document.querySelector('#sellin').value, 
-        price: document.querySelector('#price').value
+        price: prec,
       })
     })
     .then(res => res.json())
